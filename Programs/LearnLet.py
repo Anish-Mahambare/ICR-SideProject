@@ -1,12 +1,17 @@
+from flask import Flask, render_template, request, session
 import csv
 import random
+import os
+
+app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 def load_questions(filename):
     questions = []
     with open(filename, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            if len(row) == 2:  # Ensure each row has exactly two columns
+            if len(row) == 2:
                 questions.append({
                     'question': row[0],
                     'answer': row[1]
@@ -14,70 +19,55 @@ def load_questions(filename):
     return questions
 
 def generate_choices(questions, correct_answer):
-    choices = [correct_answer]  # Start with the correct answer
-    
-    # Select three other random answers from questions
+    choices = [correct_answer]
     while len(choices) < 4:
         random_question = random.choice(questions)
         random_answer = random_question['answer']
         if random_answer != correct_answer and random_answer not in choices:
             choices.append(random_answer)
-    
-    # Shuffle the choices
     random.shuffle(choices)
     return choices
 
-def print_question(question, choices):
-    print(f"Question: {question}")
-    for i, choice in enumerate(choices, start=1):
-        print(f"{i}. {choice}")
+@app.route('/', methods=['GET', 'POST'])
+def quiz():
+    if 'questions' not in session:
+        session['questions'] = load_questions('./Datasets/trivia_questions.csv')
+        session['current_question'] = 0
+        session['incorrect_answers'] = []
+        session['total_questions'] = 0
 
-def main():
-    filename = './Datasets/trivia_questions.csv'
-    questions = load_questions(filename)
-    incorrect_answers = []
-    
-    while True:
-        random.shuffle(questions)
-        for index, question in enumerate(questions, start=1):
-            correct_answer = question['answer']
-            choices = generate_choices(questions, correct_answer)
-            print_question(question['question'], choices)
-            
-            user_choice = None
-            while user_choice not in ['1', '2', '3', '4']:
-                user_choice = input("Enter your choice (1-4): ")
-            user_choice = int(user_choice)
-            
-            if choices[user_choice - 1] == correct_answer:
-                print("Correct!")
-            else:
-                print(f"Wrong! The correct answer was: {correct_answer}")
-                incorrect_answers.append(question)  # Record the incorrect question
-            
-            if index % 10 == 0:
-                # Every 10 questions, revisit incorrect answers
-                if incorrect_answers:
-                    input("You've completed 10 questions. Press Enter to revisit the questions you got wrong.")
-                    for wrong_question in incorrect_answers:
-                        correct_answer = wrong_question['answer']
-                        choices = generate_choices(questions, correct_answer)
-                        print_question(wrong_question['question'], choices)
-                        
-                        user_choice = None
-                        while user_choice not in ['1', '2', '3', '4']:
-                            user_choice = input("Enter your choice (1-4): ")
-                            user_choice = int(user_choice)
-                        
-                            if choices[user_choice - 1] == correct_answer:
-                                print("Correct!")
-                            else:
-                                print(f"Wrong! The correct answer was: {correct_answer}")
-                        
-                                input("Press Enter to continue...")
-                                incorrect_answers = []  # Clear the list after revisiting
-            
-            input("Press Enter to continue...")
+    if request.method == 'POST':
+        user_choice = request.form['choice']
+        correct_answer = session['current_choices'][int(user_choice)]
+        if correct_answer == session['questions'][session['current_question']]['answer']:
+            result = "Correct!"
+        else:
+            result = f"Wrong! The correct answer was: {session['questions'][session['current_question']]['answer']}"
+            session['incorrect_answers'].append(session['questions'][session['current_question']])
 
-if __name__ == "__main__":
-    main()
+        session['current_question'] += 1
+        session['total_questions'] += 1
+
+        if session['total_questions'] % 10 == 0 and session['incorrect_answers']:
+            return render_template('review.html', questions=session['incorrect_answers'])
+
+        if session['current_question'] >= len(session['questions']):
+            session['current_question'] = 0
+            random.shuffle(session['questions'])
+
+        session.modified = True
+        return render_template('result.html', result=result)
+
+    question = session['questions'][session['current_question']]
+    choices = generate_choices(session['questions'], question['answer'])
+    session['current_choices'] = choices
+    return render_template('quiz.html', question=question['question'], choices=choices)
+
+@app.route('/review', methods=['POST'])
+def review():
+    session['incorrect_answers'] = []
+    session.modified = True
+    return quiz()
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
