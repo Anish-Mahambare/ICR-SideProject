@@ -14,7 +14,9 @@ def load_questions(filename):
     return questions
 
 def generate_choices(questions, correct_answer):
-    choices = [correct_answer]  # Start with the correct answer
+    choices = []
+    # Include the correct answer first
+    choices.append(correct_answer)
     
     # Select three other random answers from questions
     while len(choices) < 4:
@@ -31,24 +33,22 @@ def print_question(question, choices):
     print(f"Question: {question}")
     for i, choice in enumerate(choices, start=1):
         print(f"{i}. {choice}")
+    return choices[0]  # Return the correct answer
 
 def main():
-    filename = './Datasets/dict.csv'
+    filename = './Datasets/trivia_questions.csv'
     questions = load_questions(filename)
     incorrect_answers = []
     
     while True:
         random.shuffle(questions)
         for index, question in enumerate(questions, start=1):
-            correct_answer = question['answer']
-            choices = generate_choices(questions, correct_answer)
-            print_question(question['question'], choices)
-            
+            choices = generate_choices(questions, question['answer'])
+            correct_answer = print_question(question['question'], choices)
             user_choice = None
             while user_choice not in ['1', '2', '3', '4']:
                 user_choice = input("Enter your choice (1-4): ")
             user_choice = int(user_choice)
-            
             if choices[user_choice - 1] == correct_answer:
                 print("Correct!")
             else:
@@ -61,7 +61,15 @@ def main():
                     input("You've completed 10 questions. Press Enter to revisit the questions you got wrong.")
                     for wrong_question in incorrect_answers:
                         choices = generate_choices(questions, wrong_question['answer'])
-                        print_question(wrong_question['question'], choices)
+                        correct_answer = print_question(wrong_question['question'], choices)
+                        user_choice = None
+                        while user_choice not in ['1', '2', '3', '4']:
+                            user_choice = input("Enter your choice (1-4): ")
+                        user_choice = int(user_choice)
+                        if choices[user_choice - 1] == correct_answer:
+                            print("Correct!")
+                        else:
+                            print(f"Wrong! The correct answer was: {correct_answer}")
                         input("Press Enter to continue...")
                     incorrect_answers = []  # Clear the list after revisiting
             
