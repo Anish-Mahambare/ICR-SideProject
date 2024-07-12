@@ -9,6 +9,7 @@
 - Update: July 12 *As of now, the app only has a Learn Mode(it currenlty errors out in the review function)*
 ## Usage 
 **FOLLOWING DIRECTIONS ASSUME YOU USING LINUX OPERATING SYSTEM** (Windows and MacOS directions will be publised later)
+Link(Might not always be hosted, you can host your own by cloning the repo)='http://172.17.80.75:5000/'
 ### Package installation
 
 ## Independent File READMEs
