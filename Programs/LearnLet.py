@@ -43,7 +43,7 @@ def quiz():
         session['total_questions'] = 0
 
     if request.method == 'POST':
-        user_choice = request.form['choice']
+        user_choice = request.form.get('choice', False)
         correct_answer = session['current_choices'][int(user_choice)]
         if correct_answer == session['questions'][session['current_question']]['answer']:
             result = "Correct!"
@@ -71,9 +71,12 @@ def quiz():
 
 @app.route('/review', methods=['POST'])
 def review():
+    print('1')
     session['incorrect_answers'] = []
+    print('2')
     session.modified = True
-    return quiz()
+    print('3')
+    return quiz() 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

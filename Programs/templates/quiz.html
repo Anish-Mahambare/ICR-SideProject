@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LearnLet</title>
+    <title>LearnLet Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>LearnLet</h1>
-    <p>{{ question }}</p>
-    <form method="post">
-        {% for choice in choices %}
-        <button type="submit" name="choice" value="{{ loop.index0 }}">{{ choice }}</button><br>
-        {% endfor %}
-    </form>
+    <div class="container">
+        <img src="{{ url_for('static', filename='learnlet_logo.png') }}" alt="LearnLet Logo" class="logo">
+        <h1>LearnLet Quiz</h1>
+        <p>{{ question }}</p>
+        <form method="post">
+            {% for choice in choices %}
+            <button type="submit" name="choice" value="{{ loop.index0 }}">{{ choice }}</button>
+            {% endfor %}
+        </form>
+    </div>
 </body>
 </html>

@@ -2,17 +2,21 @@
 <html>
 <head>
     <title>Review Incorrect Answers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Review Incorrect Answers</h1>
-    <p>You've completed 10 questions. Here are the questions you got wrong:</p>
-    <ul>
-    {% for question in questions %}
-        <li>{{ question.question }} - Correct answer: {{ question.answer }}</li>
-    {% endfor %}
-    </ul>
-    <form method="post" action="/review">
-        <button type="submit">Continue Quiz</button>
-    </form>
+    <div class="container">
+        <img src="{{ url_for('static', filename='learnlet_logo.png') }}" alt="LearnLet Logo" class="logo">
+        <h1>Review Incorrect Answers</h1>
+        <p>You've completed 10 questions. Here are the questions you got wrong:</p>
+        <ul>
+        {% for question in questions %}
+            <li>{{ question.question }}</li>
+        {% endfor %}
+        </ul>
+        <form method="post" action="/review">
+            <button type="submit">Continue Quiz</button>
+        </form>
+    </div>
 </body>
 </html>

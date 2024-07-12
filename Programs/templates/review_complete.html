@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz Result</title>
+    <title>Review Complete</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <img src="{{ url_for('static', filename='learnlet_logo.png') }}" alt="LearnLet Logo" class="logo">
-        <h1>Quiz Result</h1>
-        <p class="result">{{ result }}</p>
-        <a href="/">Next Question</a>
+        <h1>Review Complete</h1>
+        <p>You have successfully reviewed all the questions you got wrong.</p>
+        <a href="/">Continue with the quiz</a>
     </div>
 </body>
 </html>
