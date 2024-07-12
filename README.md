@@ -4,7 +4,7 @@
 ██─██▀██─▄█▀██─▀─███─▄─▄██─█▄▀─███─██▀██─▄█▀███─███
 ▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀
 
-### Source version of a popular flashcard style learning website done while interning @ Institue of Computing in Research 
+### Open Source version of a popular flashcard style learning website done while interning @ Institue of Computing in Research 
 
 - Update: July 12 *As of now, the app only has a Learn Mode(it currenlty errors out in the review function)*
 ## Usage 
