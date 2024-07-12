@@ -2,7 +2,13 @@ from flask import Flask, render_template, request, session
 import csv
 import random
 import os
+import sys
 
+try:
+    dataset = sys.argv[1]
+except:
+    print('YOU have not ran the program correclty, run it with a dataset from the Datasets folder\n the correct syntax for running the program is: python3 LearnLet.py ./Datasets/FILE NAME HERE\nCTRL-C to exit and try again\n ----------------------------')
+    
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -31,7 +37,7 @@ def generate_choices(questions, correct_answer):
 @app.route('/', methods=['GET', 'POST'])
 def quiz():
     if 'questions' not in session:
-        session['questions'] = load_questions('./Datasets/trivia_questions.csv')
+        session['questions'] = load_questions(dataset)
         session['current_question'] = 0
         session['incorrect_answers'] = []
         session['total_questions'] = 0
