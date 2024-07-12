@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Incorrect Answers</title>
+</head>
+<body>
+    <h1>Review Incorrect Answers</h1>
+    <p>You've completed 10 questions. Here are the questions you got wrong:</p>
+    <ul>
+    {% for question in questions %}
+        <li>{{ question.question }} - Correct answer: {{ question.answer }}</li>
+    {% endfor %}
+    </ul>
+    <form method="post" action="/review">
+        <button type="submit">Continue Quiz</button>
+    </form>
+</body>
+</html>

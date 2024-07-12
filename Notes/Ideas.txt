@@ -1,0 +1,9 @@
+- comment out the programs
+- add a function to choose what datasets to use
+  - start with when you run the script
+  - later add a choice of making your own dataset on the webpage or choosing thre as well
+- add a menu for the webpage that goes through various modes
+- Modes
+  - match
+  - learn
+  - trivaBot(with AI)
