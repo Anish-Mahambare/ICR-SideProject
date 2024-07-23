@@ -9,7 +9,7 @@
 ## Usage - Linux
 
 ### Package installation
-Install the following dependencies to get started =
+Install the following dependencies to get started
 ```
 pip install flask
 pip install csv
