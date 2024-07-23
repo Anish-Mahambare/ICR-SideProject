@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Complete</title>
+</head>
+<body>
+    <h1>Review Complete</h1>
+    <p>You have successfully reviewed all the questions you got wrong.</p>
+    <a href="/">Continue with the quiz</a>
+</body>
+</html>

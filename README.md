@@ -4,17 +4,39 @@
 ██─██▀██─▄█▀██─▀─███─▄─▄██─█▄▀─███─██▀██─▄█▀███─███
 ▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▀▄▄▄▀▀
 
-### Open Source version of a popular flashcard style learning website done while interning @ Institue of Computing in Research 
+### Open Source version of a popular quiz  style learning website done while interning @ Institue of Computing in Research 
 
-- Update: July 12 *As of now, the app only has a Learn Mode(it currenlty errors out in the review function)*
-## Usage 
-**FOLLOWING DIRECTIONS ASSUME YOU USING LINUX OPERATING SYSTEM** (Windows and MacOS directions will be publised later)
-	    - Link(Might not always be hosted, you can host your own by cloning the repo)
+## Usage - Linux
+
 ### Package installation
-
-## Independent File READMEs
-
-### LearnLet.py
-Will contain the code for the main app
-- for now it has the learn function which will later be put in a class or a seperate file 
-
+Install the following dependencies to get started =
+```
+pip install flask
+pip install csv
+pip install random
+pip install os
+pip install sys
+```
+### Creating your Learning Set
+There are two ways to create your learning set that you will practice through learn let.
+- Option 1
+1. Go to your text editor and make a file InsertName.csv
+2. Write your questions and anwsers in the following format
+```
+question,anwser
+question,anwser
+question,anwser
+```
+3. Save the csv file in the LearnLet/Programs/Datasets/ directory
+- Option 2
+1. Go to the set you wish to study on quizlet
+2. Open up web console through inspect
+3. Copy the JS script from the Programs directory and run it in the web console
+4. Copy the output and save it in your text editor
+5. Save the file as InsertName.csv in the  ```LearnLet/Programs/Datasets/``` directory
+### Running the application
+1. Navigate into the programs directory and run the following: (switch InsertName with the set you want to study)
+```
+python3 LearnLet.py ./Datasets/InsertName.csv
+```
+2. Open the link that the terminal outputs and start studying!
