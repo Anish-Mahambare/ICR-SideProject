@@ -65,3 +65,40 @@ a:hover {
 ul {
     padding-left: 20px;
 }
+
+/* Add these styles to your existing CSS file */
+
+#game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.card:hover {
+    background-color: #2980b9;
+}
+
+.card.matched {
+    background-color: #2ecc71;
+}
+
+#stopwatch, #score {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#start-game {
+    margin-top: 20px;
+}
