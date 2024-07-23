@@ -36,9 +36,13 @@ question,anwser
 4. Copy the output and save it in your text editor
 5. Save the file as InsertName.csv in the  ```LearnLet/Programs/Datasets/``` directory
 ### Running the application
-1. Navigate into the programs directory and run the following: (switch InsertName with the set you want to study)
+Navigate into the programs directory and run the following for Quiz: (switch InsertName with the set you want to study)
 ```
-python3 LearnLet.py ./Datasets/InsertName.csv
+python3 LearnLetQuiz.py ./Datasets/InsertName.csv
+```
+Navigate into the programs directory and run the following for Match: (switch InsertName with the set you want to study)
+```
+python3 LearnLetMatch.py ./Datasets/InsertName.csv
 ```
 2. Open the link that the terminal outputs and start studying!
 
@@ -72,8 +76,12 @@ question,anwser
 4. Copy the output and save it in your text editor
 5. Save the file as InsertName.csv in the  ```LearnLet/Programs/Datasets/``` directory
 ### Running the application
-1. Navigate into the programs directory and run the following: (switch InsertName with the set you want to study)
+Navigate into the programs directory and run the following for Quiz: (switch InsertName with the set you want to study)
 ```
-python LearnLet.py ./Datasets/InsertName.csv
+python LearnLetQuiz.py ./Datasets/InsertName.csv
+```
+Navigate into the programs directory and run the following for Match: (switch InsertName with the set you want to study)
+```
+python LearnLetMatch.py ./Datasets/InsertName.csv
 ```
 2. Open the link that the terminal outputs and start studying!
