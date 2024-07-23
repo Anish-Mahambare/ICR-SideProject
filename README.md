@@ -6,7 +6,7 @@
 
 ### Open Source version of a popular quiz  style learning website done while interning @ Institue of Computing in Research 
 
-## Usage - Linux
+## Usage - Linux/Mac
 ### Cloning the project
 ```
 git clone https://github.com/Anish-Mahambare/LearnLet.git
