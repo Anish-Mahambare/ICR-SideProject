@@ -31,7 +31,7 @@ question,anwser
 - Option 2
 1. Go to the set you wish to study on quizlet
 2. Open up web console through inspect
-3. Copy the JS script from the Programs directory and run it in the web console
+3. Copy the JS script(QuizletTOcsv.js) from the Programs directory and run it in the web console
 4. Copy the output and save it in your text editor
 5. Save the file as InsertName.csv in the  ```LearnLet/Programs/Datasets/``` directory
 ### Running the application
