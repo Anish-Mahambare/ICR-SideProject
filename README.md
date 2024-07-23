@@ -17,8 +17,6 @@ Install the following dependencies to get started
 pip install flask
 pip install csv
 pip install random
-pip install os
-pip install sys
 ```
 ### Creating your Learning Set
 There are two ways to create your learning set that you will practice through learn let.
